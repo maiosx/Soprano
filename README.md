@@ -1,5 +1,7 @@
 # Soprano
 
+![Soprano preview](preview.png)
+
 A fullscreen Omarchy overlay of quotes from The Sopranos. Click anywhere for another line. Escape dismisses. The bar widget is an **S**.
 
 Built from the same overlay template as Runway: `WlrLayer.Overlay`, exclusive keyboard focus, `keepLoaded`, bar-widget toggle.
