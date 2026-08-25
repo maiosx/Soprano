@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "soprano.quotes",
   "name": "Soprano",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "maiosx",
   "license": "MIT",
   "description": "Fullscreen overlay of quotes from The Sopranos. Click for another.",

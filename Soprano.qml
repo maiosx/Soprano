@@ -139,8 +139,9 @@ Item {
       Item {
         id: stage
         width: Math.min(parent.width, 640)
-        height: parent.height
         anchors.horizontalCenter: parent.horizontalCenter
+        anchors.top: parent.top
+        anchors.bottom: tabs.top
 
         Text {
           anchors.horizontalCenter: parent.horizontalCenter
@@ -198,7 +199,7 @@ Item {
             width: parent.width
             horizontalAlignment: Text.AlignHCenter
             wrapMode: Text.WordWrap
-            text: "\u201C" + (root.current && root.current.text ? root.current.text : "") + "\u201D"
+            text: "“" + (root.current && root.current.text ? root.current.text : "") + "”"
             color: root.fg
             font.pixelSize: 32
             font.family: "serif"
@@ -233,35 +234,38 @@ Item {
 
         Text {
           anchors.horizontalCenter: parent.horizontalCenter
-          anchors.bottom: tabs.top
+          anchors.bottom: parent.bottom
           anchors.bottomMargin: 10
-          text: "Click for another \u00B7 Esc to close"
+          text: "Click for another · Esc to close"
           color: root.subtle
           font.pixelSize: 12
           textFormat: Text.PlainText
         }
+      }
 
-        Rectangle {
-          id: tabs
-          width: parent.width
-          height: 56
-          anchors.bottom: parent.bottom
-          color: root.bg
+      Item {
+        id: tabs
+        width: parent.width
+        height: 56
+        anchors.bottom: parent.bottom
 
-          ListView {
-            id: charList
-            anchors.fill: parent
-            anchors.leftMargin: 16
-            anchors.rightMargin: 16
-            orientation: ListView.Horizontal
-            spacing: 6
-            clip: true
+        MouseArea {
+          anchors.fill: parent
+          onClicked: function (mouse) { mouse.accepted = true }
+        }
+
+        Row {
+          id: pillRow
+          anchors.horizontalCenter: parent.horizontalCenter
+          anchors.verticalCenter: parent.verticalCenter
+          spacing: 6
+
+          Repeater {
             model: characterModel
-            boundsBehavior: Flickable.StopAtBounds
             delegate: Item {
               id: pillWrap
               required property string shortName
-              height: charList.height
+              height: 36
               width: pillBox.width
 
               Rectangle {
